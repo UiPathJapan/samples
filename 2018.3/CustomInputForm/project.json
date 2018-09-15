@@ -1,0 +1,30 @@
+{
+  "name": "loadHtml",
+  "description": "Sample Custom Input Form",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.UIAutomation.Activities": "[18.3.6820.27739]",
+    "UiPath.System.Activities": "[18.3.6820.27717]",
+    "UiPath.Mail.Activities": "[1.1.6562.21018]",
+    "UiPath.WebAPI.Activities": "1.1.6479.13209"
+  },
+  "schemaVersion": "3.2",
+  "studioVersion": "0.0.0.0",
+  "projectVersion": "1.0.6828.33524",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ]
+  },
+  "projectType": "Workflow",
+  "libraryOptions": {
+    "includeOriginalXaml": false,
+    "privateWorkflows": []
+  },
+  "arguments": {
+    "input": [],
+    "output": []
+  }
+}
