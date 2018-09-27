@@ -1,0 +1,25 @@
+{
+  "name": "EncryptDecrypt",
+  "description": "Demo of encryption",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.UIAutomation.Activities": "[18.3.6838.13993]",
+    "UiPath.System.Activities": "[18.3.6838.13974]",
+    "UiPath.Cryptography.Activities": "[1.6.6837.26855-alpha]"
+  },
+  "schemaVersion": "3.2",
+  "studioVersion": "0.0.0.0",
+  "projectVersion": "1.0.0.0",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ]
+  },
+  "projectType": "Workflow",
+  "libraryOptions": {
+    "includeOriginalXaml": false,
+    "privateWorkflows": []
+  }
+}
