@@ -1,0 +1,9 @@
+{
+  "orchestrator": {
+    "hostname": "platform.uipath.com",
+    "tenancyName": "<TENANCY>",
+    "usernameOrEmailAddress": "admin",
+    "password": "<PASSWORD>"
+  },
+  "queue": "<QUEUE NAME>"
+}

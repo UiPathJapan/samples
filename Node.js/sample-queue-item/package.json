@@ -1,0 +1,8 @@
+{
+  "name": "sample-queue-item",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "uipath-orchestrator": "1.0.2"
+  }
+}
