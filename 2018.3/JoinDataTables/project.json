@@ -1,0 +1,26 @@
+{
+  "name": "JoinDataTables",
+  "description": "Demo joining datatables",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.Excel.Activities": "[2.4.6837.26840-alpha]",
+    "UiPath.System.Activities": "[18.3.6843.27199]",
+    "UiPath.UIAutomation.Activities": "[18.3.6843.27221]",
+    "UiPath.Database.Activities": "[1.2.6843.37330-alpha]"
+  },
+  "schemaVersion": "3.2",
+  "studioVersion": "0.0.0.0",
+  "projectVersion": "1.0.0.0",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ]
+  },
+  "projectType": "Workflow",
+  "libraryOptions": {
+    "includeOriginalXaml": false,
+    "privateWorkflows": []
+  }
+}
