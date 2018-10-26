@@ -2,6 +2,7 @@
 
 | フォルダー | コンテンツ |
 | --- | --- |
+| BlockUserInput | ユーザー入力をブロックアクティビティ |
 | CustomInputForm | カスタム入力アクティビティ |
 | EncryptDecrypt | 暗号化アクティビティ |
 | JoinDataTables | データテーブルを結合アクティビティ |

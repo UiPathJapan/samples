@@ -1,0 +1,26 @@
+{
+  "name": "ユーザー入力をブロックアクティビティの紹介",
+  "description": "空のプロジェクト",
+  "main": "Main.xaml",
+  "dependencies": {
+    "UiPath.UIAutomation.Activities": "[18.3.6858.13449]",
+    "UiPath.System.Activities": "[18.3.6858.13427]",
+    "UiPath.Excel.Activities": "[2.4.6856.17931]",
+    "UiPath.Mail.Activities": "[1.1.6562.21018]"
+  },
+  "schemaVersion": "3.2",
+  "studioVersion": "18.3.1.40",
+  "projectVersion": "1.0.0.0",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ]
+  },
+  "projectType": "Workflow",
+  "libraryOptions": {
+    "includeOriginalXaml": false,
+    "privateWorkflows": []
+  }
+}
