@@ -12,7 +12,7 @@ var config = require('./config');
  * @type {Object.<string|number|boolean|null>}
  */
 var queueItemSpecificContent = {
-    someStr: 'Example of arbitrary string value',
+    someStr: 'Example of string value 文字列テスト',
     someNumber: 1234567890,
     someBoolean: false,
     someNull: null
@@ -24,7 +24,7 @@ var queueItemSpecificContent = {
 var orchestrator = new Orchestrator(config.orchestrator);
 var queueItem = {itemData: {
     Name: config.queue,
-    SpecificContent: queueItemSpecificContent
+    SpecificContent: Orchestrator.odataHelper.annotateStrings(queueItemSpecificContent)
 }};
 orchestrator.v2.odata.postAddQueueItem(
     queueItem,
