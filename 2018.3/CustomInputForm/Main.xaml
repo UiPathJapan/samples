@@ -60,7 +60,7 @@
       <Variable x:TypeArguments="x:String" Name="formOutput" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" Name="dicOutput" />
     </Sequence.Variables>
-    <ui:CustomInputActivity DisplayName="Custom input" sap2010:WorkflowViewState.IdRef="CustomInputActivity_1" Result="[formOutput]" URI="form/form.html" />
+    <ui:CustomInput DisplayName="Custom input" sap2010:WorkflowViewState.IdRef="CustomInput_1" Result="[formOutput]" URI="form/form.html" />
     <ui:LogMessage DisplayName="Log output" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[formOutput]" />
     <ui:DeserializeJson x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" DisplayName="Deserialize json" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[dicOutput]" JsonString="[formOutput]" />
     <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" Buttons="Ok" DisplayName="Message Box" sap2010:WorkflowViewState.IdRef="MessageBox_1" Text="[&quot;Thank you &quot; + dicOutput(&quot;firstname&quot;) + &quot; &quot; + dicOutput(&quot;lastname&quot;)]" TopMost="True" />
@@ -68,7 +68,7 @@
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
-      <sap2010:ViewStateData Id="CustomInputActivity_1" sap:VirtualizedContainerService.HintSize="314,83.2">
+      <sap2010:ViewStateData Id="CustomInput_1" sap:VirtualizedContainerService.HintSize="314,83.2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
