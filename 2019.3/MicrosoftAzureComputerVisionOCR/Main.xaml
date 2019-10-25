@@ -1,0 +1,186 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="654,887" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:sma="clr-namespace:System.Management.Automation;assembly=System.Management.Automation" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="21">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="17">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart sap2010:Annotation.AnnotationText="[Microsoft Azure Computer Vision OCR] アクティビティを使って、画像の中のテキストデータを文字列として抽出する。&#xA;注1: 画像データを開くにあたって、[PowerShell を呼び出し] アクティビティに画像のファイルパスを渡してフォトアプリを立ち上げるため、PNG 形式のファイルを開くデフォルトのアプリケーションが「フォト」アプリケーションに設定されている必要がある。&#xA;注 2: [Microsoft Azure Computer Vision OCR] アクティビティは、使用の際に [API キー] と [エンドポイント] をプロパティに設定する必要があるため、Microsoft Azure ポータル上で事前に API キーとエンドポイントの生成をすること。" DisplayName="Microsoft Azure Computer Vision OCR アクティビティサンプルワークフロー" sap:VirtualizedContainerService.HintSize="634,827" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="画像ファイルのフルパス" Name="ImageFilePath" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="画像ファイルから文字認識をして取得した結果" Name="TextResult" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <av:Point x:Key="ShapeLocation">201,0</av:Point>
+        <av:Size x:Key="ShapeSize">60,75</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">231,75 231,125</av:PointCollection>
+        <x:Double x:Key="Width">600</x:Double>
+        <x:Double x:Key="Height">704</x:Double>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID2</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID2">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">100,125</av:Point>
+          <av:Size x:Key="ShapeSize">262,102</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">231,227 231,277</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign sap2010:Annotation.AnnotationText="同じプロジェクトフォルダ内に、「image.png」ファイルが格納されている。" DisplayName="対象の画像ファイルのパスを変数に代入" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[ImageFilePath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[System.IO.Path.Combine(Environment.CurrentDirectory, "image.png")]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID0">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">131,277</av:Point>
+              <av:Size x:Key="ShapeSize">200,123</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">231,400 231,430 232,430 232,450</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:InvokePowerShell x:TypeArguments="sma:PSObject" ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="[PowerShell を呼び出し] アクティビティに、画像のファイルパスを渡して画像アプリを立ち上げて画像ファイルを開く。" CommandText="[ImageFilePath]" DisplayName="PowerShell を呼び出し" sap:VirtualizedContainerService.HintSize="200,123" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:InvokePowerShell>
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID1">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">132,450</av:Point>
+                  <av:Size x:Key="ShapeSize">200,213</av:Size>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:WindowScope ApplicationWindow="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" Window="{x:Null}" sap2010:Annotation.AnnotationText="画像アプリが立ち上がったら、画像が画面全体に表示されるように [ウィンドウを最大化] アクティビティを使ってウィンドウを最大化させる。&#xA;その後、[OCR でテキストを取得] アクティビティを使い画像上の文字認識を行い、最後に [メッセージ ボックス] アクティビティで取得した文字列を表示させる。" DisplayName="ウィンドウにアタッチ" sap:VirtualizedContainerService.HintSize="200,213" sap2010:WorkflowViewState.IdRef="WindowScope_1" InformativeScreenshot="6d0794727d5164582b3c3c8bdf705968" Selector="&lt;wnd app='applicationframehost.exe' appid='Microsoft.Windows.Photos*!App' title='フォト' /&gt;">
+                <ui:WindowScope.Body>
+                  <ActivityAction x:TypeArguments="x:Object">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                    </ActivityAction.Argument>
+                    <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="376,679" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <ui:MaximizeWindow Window="{x:Null}" sap2010:Annotation.AnnotationText="フォト画面を最大化させる。" DisplayName="ウィンドウを最大化" sap:VirtualizedContainerService.HintSize="334,49" sap2010:WorkflowViewState.IdRef="MaximizeWindow_1">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:MaximizeWindow>
+                      <ui:GetOCRText WordsInfo="{x:Null}" sap2010:Annotation.AnnotationText="開いた画像ファイル上のテキストデータを [OCR でテキストを取得] アクティビティを使い抽出する。OCR エンジンとして、[Microsodt Azure Computer Vision OCR] を指定。" DisplayName="OCR でテキストを取得" sap:VirtualizedContainerService.HintSize="334,372" sap2010:WorkflowViewState.IdRef="GetOCRText_1">
+                        <ui:GetOCRText.OCREngine>
+                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
+                            <ActivityFunc.Argument>
+                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                            </ActivityFunc.Argument>
+                            <ui:MicrosoftAzureComputerVisionOCR FilterRegion="{x:Null}" Text="{x:Null}" sap2010:Annotation.AnnotationText="[言語] プロパティに Japanese、[拡大縮小] プロパティに 1 をセット。&#xA;[API キー] と [エンドポイント] プロパティに関しては、ダミーの API キーとエンドポイントが設定されているため、Microsoft Azure ポータル上で取得したものをセットする必要がある。" ApiKey="DUMMY_API_KEY" DisplayName="Microsoft Azure Computer Vision OCR" Endpoint="https://dummyendpoint" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,169" sap2010:WorkflowViewState.IdRef="MicrosoftAzureComputerVisionOCR_1" Image="[Image]" Language="Japanese" Profile="None" Scale="1">
+                              <sap:WorkflowViewStateService.ViewState>
+                                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                                </scg:Dictionary>
+                              </sap:WorkflowViewStateService.ViewState>
+                            </ui:MicrosoftAzureComputerVisionOCR>
+                          </ActivityFunc>
+                        </ui:GetOCRText.OCREngine>
+                        <ui:GetOCRText.Target>
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="f8549bb684a826927b964c7b95ec187d" Selector="&lt;uia automationid='AutomationBackgroundControl' cls='Photos.Viewer.Controls.AccessibleContentControl' name='image.png' /&gt;" WaitForReady="INTERACTIVE" />
+                        </ui:GetOCRText.Target>
+                        <ui:GetOCRText.Text>
+                          <OutArgument x:TypeArguments="x:String">[TextResult]</OutArgument>
+                        </ui:GetOCRText.Text>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:GetOCRText>
+                      <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" sap2010:Annotation.AnnotationText="取得した文字列をメッセージ ボックスに表示。" Buttons="Ok" DisplayName="メッセージ ボックス" sap:VirtualizedContainerService.HintSize="334,86" sap2010:WorkflowViewState.IdRef="MessageBox_2" Text="[TextResult]" TopMost="True">
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                      </ui:MessageBox>
+                    </Sequence>
+                  </ActivityAction>
+                </ui:WindowScope.Body>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:WindowScope>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+  </Flowchart>
+</Activity>
