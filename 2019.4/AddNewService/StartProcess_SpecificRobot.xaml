@@ -1,0 +1,437 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="StartProcess_SpecificRobot" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:o="clr-namespace:OrchestratorAPI;assembly=OrchestratorAPI" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uwa="clr-namespace:UiPath.WebClient.AccountClientNamespace;assembly=OrchestratorAPI" xmlns:uwf="clr-namespace:UiPath.WebClient.FoldersClientNamespace;assembly=OrchestratorAPI" xmlns:uwj="clr-namespace:UiPath.WebClient.JobsClientNamespace;assembly=OrchestratorAPI" xmlns:uwr="clr-namespace:UiPath.WebClient.RobotsClientNamespace;assembly=OrchestratorAPI" xmlns:uwr1="clr-namespace:UiPath.WebClient.ReleasesClientNamespace;assembly=OrchestratorAPI" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="テナント名" Name="TenantName" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Orchestrator ログインユーザー名" Name="Username" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="Orchestrator ログインパスワード" Name="Password" Type="InArgument(ss:SecureString)" />
+    <x:Property sap2010:Annotation.AnnotationText="フォルダー名" Name="FolderName" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="プロセス名" Name="ProcessName" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="ロボット名" Name="RobotName" Type="InArgument(x:String)" />
+    <x:Property sap2010:Annotation.AnnotationText="プロセス実行ステータス" Name="Status" Type="OutArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>654,1083</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>StartProcess_SpecificRobot_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="46">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>OrchestratorAPI</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Net</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="17">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>OrchestratorAPI</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart sap2010:Annotation.AnnotationText="Orchestrator のプロセスを実行するライブラリ アクティビティのサンプル。" DisplayName="StartProcess_SpecificRobot" sap:VirtualizedContainerService.HintSize="634,1023" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Bearer トークン" Name="BearerToken" />
+      <Variable x:TypeArguments="s:Nullable(x:Int64)" sap2010:Annotation.AnnotationText="Folder Id" Name="FolderId" />
+      <Variable x:TypeArguments="s:Nullable(x:Int64)" sap2010:Annotation.AnnotationText="Robot Id" Name="RobotId" />
+      <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Release Key" Name="ReleaseKey" />
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+        <av:Size x:Key="ShapeSize">60,75</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,107.5</av:PointCollection>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+        <x:Double x:Key="Height">960</x:Double>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID4</x:Reference>
+    </Flowchart.StartNode>
+    <FlowStep x:Name="__ReferenceID4">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">200,107.5</av:Point>
+          <av:Size x:Key="ShapeSize">200,138</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">300,245.5 300,283.5</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Sequence sap2010:Annotation.AnnotationText="Orchestrator API の /api/Account/Authenticate エンドポイントにリクエストし、ユーザー認証を行う。" DisplayName="認証" sap:VirtualizedContainerService.HintSize="200,138" sap2010:WorkflowViewState.IdRef="Sequence_1">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="o:LoginModel" sap2010:Annotation.AnnotationText="Authenticate する際に必要なインプット" Default="[New OrchestratorAPI.LoginModel]" Name="AuthenticateLoginModel" />
+          <Variable x:TypeArguments="o:AjaxResponse" sap2010:Annotation.AnnotationText="Authenticate リクエスト結果" Name="AuthenticateResponse" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <Sequence sap2010:Annotation.AnnotationText="AuthenteicateLoginModel 変数にテナント名、ユーザー名、パスワードを設定する。" DisplayName="AuthenticateLoginModel 変数の設定" sap:VirtualizedContainerService.HintSize="304,617" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="ui:GenericValue" Name="PlainPassword" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Assign sap2010:Annotation.AnnotationText="テナント名" DisplayName="TenancyName に代入" sap:VirtualizedContainerService.HintSize="262,87" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[AuthenticateLoginModel.TenancyName]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[TenantName]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+          <Assign sap2010:Annotation.AnnotationText="ユーザー名" DisplayName="UsernameOrEmailAddress に代入" sap:VirtualizedContainerService.HintSize="262,87" sap2010:WorkflowViewState.IdRef="Assign_2">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[AuthenticateLoginModel.UsernameOrEmailAddress]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[Username]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+          <Assign sap2010:Annotation.AnnotationText="Password 引数は SecureString 型なので、String 型 (平文) を取得する。" DisplayName="パスワードの平文変換" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_14">
+            <Assign.To>
+              <OutArgument x:TypeArguments="ui:GenericValue">[PlainPassword]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="ui:GenericValue">[New System.Net.NetworkCredential(String.Empty, Password).Password]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+          <Assign sap2010:Annotation.AnnotationText="平文パスワード" DisplayName="Password に代入" sap:VirtualizedContainerService.HintSize="262,87" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[AuthenticateLoginModel.Password]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[PlainPassword]</InArgument>
+            </Assign.Value>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Assign>
+        </Sequence>
+        <uwa:AuthenticateActivity BearerToken="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" Headers="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Username="{x:Null}" sap2010:Annotation.AnnotationText="Orchestrator API でユーザー認証を行う。リクエスト結果を AuthenticateResponse 変数に格納する。" DisplayName="Authenticate" Endpoint="[&quot;https://platform.uipath.com&quot;]" sap:VirtualizedContainerService.HintSize="304,94" sap2010:WorkflowViewState.IdRef="AuthenticateActivity_1" Response="[AuthenticateResponse]" TimeoutMS="30000">
+          <uwa:AuthenticateActivity.Request>
+            <uwa:AccountClientAuthenticateRequest LoginModel="[AuthenticateLoginModel]" />
+          </uwa:AuthenticateActivity.Request>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </uwa:AuthenticateActivity>
+        <Assign sap2010:Annotation.AnnotationText="認証結果を BearerToken 変数に代入する。" DisplayName="BearerToken に代入" sap:VirtualizedContainerService.HintSize="304,87" sap2010:WorkflowViewState.IdRef="Assign_4">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[BearerToken]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[AuthenticateResponse.Result.ToString]</InArgument>
+          </Assign.Value>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Assign>
+      </Sequence>
+      <FlowStep.Next>
+        <FlowStep x:Name="__ReferenceID3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">200,283.5</av:Point>
+              <av:Size x:Key="ShapeSize">200,138</av:Size>
+              <av:PointCollection x:Key="ConnectorLocation">300,421.5 300,457</av:PointCollection>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence sap2010:Annotation.AnnotationText="Orchestrator API の /odata/Folders エンドポイントにリクエストする。フォルダー名でフォルダーをフィルタリングする。" DisplayName="Folder Id の取得" sap:VirtualizedContainerService.HintSize="200,138" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence.Variables>
+              <Variable x:TypeArguments="o:ODataResponseOfListOfFolderDto" sap2010:Annotation.AnnotationText="GetFolders リクエスト結果" Name="FoldersResponse" />
+            </Sequence.Variables>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uwf:GetFoldersActivity ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" Headers="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Username="{x:Null}" sap2010:Annotation.AnnotationText="DisplayName が FolderName 引数と一致しているフォルダーだけを取得する。取得結果は FoldersResponse 変数に格納する。" BearerToken="[BearerToken]" DisplayName="GetFolders" Endpoint="https://platform.uipath.com" sap:VirtualizedContainerService.HintSize="262,109" sap2010:WorkflowViewState.IdRef="GetFoldersActivity_1" Response="[FoldersResponse]" TimeoutMS="30000">
+              <uwf:GetFoldersActivity.Request>
+                <uwf:FoldersClientGetFoldersRequest Count="{x:Null}" Expand="{x:Null}" Orderby="{x:Null}" Select="{x:Null}" Skip="{x:Null}" Top="{x:Null}" Filter="[&quot;DisplayName eq '&quot; + FolderName + &quot;'&quot;]" />
+              </uwf:GetFoldersActivity.Request>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uwf:GetFoldersActivity>
+            <Assign sap2010:Annotation.AnnotationText="FoldersResponse 変数から Folder Id を取得し、FolderId 変数に代入する。" DisplayName="Folder Id に代入" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_6">
+              <Assign.To>
+                <OutArgument x:TypeArguments="s:Nullable(x:Int64)">[FolderId]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="s:Nullable(x:Int64)">[FoldersResponse.Value(0).Id]</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+          </Sequence>
+          <FlowStep.Next>
+            <FlowStep x:Name="__ReferenceID0">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <av:Point x:Key="ShapeLocation">200,457</av:Point>
+                  <av:Size x:Key="ShapeSize">200,138</av:Size>
+                  <av:PointCollection x:Key="ConnectorLocation">300,595 300,627</av:PointCollection>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <Sequence sap2010:Annotation.AnnotationText="Orchestrator API の /odata/Robots エンドポイントにリクエストする。ロボット名でロボットをフィルタリングする。" DisplayName="Robot Id の取得" sap:VirtualizedContainerService.HintSize="200,138" sap2010:WorkflowViewState.IdRef="Sequence_2">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="o:ODataResponseOfListOfRobotDto" sap2010:Annotation.AnnotationText="GetRobots リクエスト結果" Name="RobotsResponse" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <uwr:GetRobotsActivity ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" Headers="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Username="{x:Null}" sap2010:Annotation.AnnotationText="Name が RobotName 引数と一致するロボットを取得する。&#xA;取得結果は RobotsResponse 変数に格納する。" BearerToken="[BearerToken]" DisplayName="GetRobots" Endpoint="[&quot;https://platform.uipath.com&quot;]" sap:VirtualizedContainerService.HintSize="262,94" sap2010:WorkflowViewState.IdRef="GetRobotsActivity_1" Response="[RobotsResponse]" TimeoutMS="30000">
+                  <uwr:GetRobotsActivity.Request>
+                    <uwr:RobotsClientGetRobotsRequest Count="{x:Null}" Expand="{x:Null}" Orderby="{x:Null}" Select="{x:Null}" Skip="{x:Null}" Top="{x:Null}" Filter="[&quot;Name eq '&quot; + RobotName + &quot;'&quot;]" X_UIPATH_OrganizationUnitId="[FolderId]" />
+                  </uwr:GetRobotsActivity.Request>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </uwr:GetRobotsActivity>
+                <Assign sap2010:Annotation.AnnotationText="RobotsResponse 変数から Robot Id を取得し、RobotId 変数に代入する。" DisplayName="Robot Id に代入 " sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_7">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="s:Nullable(x:Int64)">[RobotId]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="s:Nullable(x:Int64)">[RobotsResponse.Value(0).Id]</InArgument>
+                  </Assign.Value>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </Assign>
+              </Sequence>
+              <FlowStep.Next>
+                <FlowStep x:Name="__ReferenceID1">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <av:Point x:Key="ShapeLocation">200,627</av:Point>
+                      <av:Size x:Key="ShapeSize">200,138</av:Size>
+                      <av:PointCollection x:Key="ConnectorLocation">300,765 300,807</av:PointCollection>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence sap2010:Annotation.AnnotationText="Orchestrator API の /odata/Releases エンドポイントにリクエストする。プロセス名でプロセス (Release) をフィルタリングする。" DisplayName="Release Key の取得" sap:VirtualizedContainerService.HintSize="200,138" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="o:ODataResponseOfListOfReleaseDto" sap2010:Annotation.AnnotationText="GetReleases リクエスト結果" Name="ReleasesResponse" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <uwr1:GetReleasesActivity ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" Headers="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Username="{x:Null}" sap2010:Annotation.AnnotationText="Name が ProcessName 引数と一致したプロセス (Release) を取得。&#xA;取得結果は ReleasesResponse 変数に格納する。" BearerToken="[BearerToken]" DisplayName="GetReleases" Endpoint="[&quot;https://platform.uipath.com&quot;]" sap:VirtualizedContainerService.HintSize="262,109" sap2010:WorkflowViewState.IdRef="GetReleasesActivity_1" Response="[ReleasesResponse]" TimeoutMS="30000">
+                      <uwr1:GetReleasesActivity.Request>
+                        <uwr1:ReleasesClientGetReleasesRequest Count="{x:Null}" Expand="{x:Null}" Orderby="{x:Null}" Select="{x:Null}" Skip="{x:Null}" Top="{x:Null}" Filter="[&quot;Name eq '&quot; + ProcessName + &quot;'&quot;]" X_UIPATH_OrganizationUnitId="[FolderId]" />
+                      </uwr1:GetReleasesActivity.Request>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </uwr1:GetReleasesActivity>
+                    <Assign sap2010:Annotation.AnnotationText="ReleasesResponse 変数から Release Key を取得し、ReleaseKey 変数に代入する。" DisplayName="Release Key に代入" sap:VirtualizedContainerService.HintSize="262,102" sap2010:WorkflowViewState.IdRef="Assign_8">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[ReleaseKey]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[ReleasesResponse.Value(0).Key]</InArgument>
+                      </Assign.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Assign>
+                  </Sequence>
+                  <FlowStep.Next>
+                    <FlowStep x:Name="__ReferenceID2">
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <av:Point x:Key="ShapeLocation">200,807</av:Point>
+                          <av:Size x:Key="ShapeSize">200,153</av:Size>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                      <Sequence sap2010:Annotation.AnnotationText="Orchestrator API の /odata/Jobs/UiPath.Server.Configuration.OData.StartJobs エンドポイントにリクエストする。" DisplayName="ジョブの開始" sap:VirtualizedContainerService.HintSize="200,153" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                        <Sequence.Variables>
+                          <Variable x:TypeArguments="o:StartJobParameters" sap2010:Annotation.AnnotationText="ジョブ実行の際に必要となるインプット" Default="[New OrchestratorAPI.StartJobParameters]" Name="StartJobParams" />
+                          <Variable x:TypeArguments="o:ODataResponseOfListOfJobDto" sap2010:Annotation.AnnotationText="ジョブを実行した結果" Name="StartJobResponse" />
+                        </Sequence.Variables>
+                        <sap:WorkflowViewStateService.ViewState>
+                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                          </scg:Dictionary>
+                        </sap:WorkflowViewStateService.ViewState>
+                        <Sequence sap2010:Annotation.AnnotationText="リクエストするにあたって、Robot Id、Release Key、Strategy の情報が必要になるので、このシーケンスで設定を行う。" DisplayName="StartJobParameters に代入" sap:VirtualizedContainerService.HintSize="304,692" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap2010:Annotation.AnnotationText="StartInfo の初期化を行う。" DisplayName="StartInfo の初期化" sap:VirtualizedContainerService.HintSize="262,87" sap2010:WorkflowViewState.IdRef="Assign_9">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="o:StartProcessDto">[StartJobParams.StartInfo]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="o:StartProcessDto">[New OrchestratorAPI.StartProcessDto]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                          <Assign sap2010:Annotation.AnnotationText="Robot Id を設定。ICollection&lt;Long&gt; 型で設定する必要があり、Robot Id は Nullable&lt;Int64&gt; なので右辺値は {Robot.Value} と入力。" DisplayName="StartInfo.RobotIds に代入" sap:VirtualizedContainerService.HintSize="262,132" sap2010:WorkflowViewState.IdRef="Assign_10">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="scg:ICollection(x:Int64)">[StartJobParams.StartInfo.RobotIds]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="scg:ICollection(x:Int64)">[{RobotId.Value}]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                          <Assign sap2010:Annotation.AnnotationText="Release Key を設定。" DisplayName="StartInfo.ReleaseKey に代入" sap:VirtualizedContainerService.HintSize="262,87" sap2010:WorkflowViewState.IdRef="Assign_11">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[StartJobParams.StartInfo.ReleaseKey]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[ReleaseKey]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                          <Assign sap2010:Annotation.AnnotationText="Strategy を設定。ここでは、ロボットの ID を指定してプロセス実行するため、Specific を代入。" DisplayName="StartInfo.Strategy に代入" sap:VirtualizedContainerService.HintSize="262,117" sap2010:WorkflowViewState.IdRef="Assign_12">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="s:Nullable(o:StartProcessDtoStrategy)">[StartJobParams.StartInfo.Strategy]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="s:Nullable(o:StartProcessDtoStrategy)">[OrchestratorAPI.StartProcessDtoStrategy.Specific]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                        </Sequence>
+                        <uwj:StartJobsActivity ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" Headers="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" Username="{x:Null}" sap2010:Annotation.AnnotationText="ジョブを開始する。&#xA;リクエスト結果は StartJobResponse 変数に格納する。" BearerToken="[BearerToken]" DisplayName="StartJobs" Endpoint="[&quot;https://platform.uipath.com&quot;]" sap:VirtualizedContainerService.HintSize="304,94" sap2010:WorkflowViewState.IdRef="StartJobsActivity_1" Response="[StartJobResponse]" TimeoutMS="30000">
+                          <uwj:StartJobsActivity.Request>
+                            <uwj:JobsClientStartJobsRequest StartJobParameters="[StartJobParams]" X_UIPATH_OrganizationUnitId="[FolderId]" />
+                          </uwj:StartJobsActivity.Request>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </uwj:StartJobsActivity>
+                        <Assign sap2010:Annotation.AnnotationText="最後に、Status 出力引数に、ジョブ実行結果を代入する。" DisplayName="Status に代入" sap:VirtualizedContainerService.HintSize="304,102" sap2010:WorkflowViewState.IdRef="Assign_13">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[Status]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[StartJobResponse.Value(0).State.ToString]</InArgument>
+                          </Assign.Value>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </Assign>
+                      </Sequence>
+                    </FlowStep>
+                  </FlowStep.Next>
+                </FlowStep>
+              </FlowStep.Next>
+            </FlowStep>
+          </FlowStep.Next>
+        </FlowStep>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID0</x:Reference>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+    <x:Reference>__ReferenceID3</x:Reference>
+  </Flowchart>
+</Activity>

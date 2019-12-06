@@ -1,0 +1,41 @@
+{
+  "name": "AddNewService",
+  "description": "新しいサービスを追加するサンプルワークフロー",
+  "main": "NewActivity.xaml",
+  "dependencies": {
+    "UiPath.System.Activities": "19.4.1",
+    "UiPath.UIAutomation.Activities": "19.4.2"
+  },
+  "webServices": [
+    {
+      "namespace": "OrchestratorAPI",
+      "serviceDocument": "Services\\OrchestratorAPI.json",
+      "webDocumentUri": "https://platform.uipath.com:443/swagger/docs/V2",
+      "uniqueReference": "IGKG8ytO4vGNyT8wDlMrmYDFWAgQLzC/tQHFkS8r8+k="
+    }
+  ],
+  "schemaVersion": "4.0",
+  "studioVersion": "19.10.1.0",
+  "projectVersion": "1.0.3",
+  "runtimeOptions": {
+    "autoDispose": false,
+    "isPausable": true,
+    "requiresUserInteraction": true,
+    "supportsPersistence": false,
+    "excludedLoggedData": [
+      "Private:*",
+      "*password*"
+    ],
+    "executionType": "Workflow"
+  },
+  "designOptions": {
+    "projectProfile": "Developement",
+    "outputType": "Library",
+    "libraryOptions": {
+      "includeOriginalXaml": false,
+      "privateWorkflows": []
+    },
+    "fileInfos": []
+  },
+  "expressionLanguage": "VisualBasic"
+}
